@@ -10,27 +10,27 @@ import SimilarJobs from '../similarJobs';
 
   const JobFilter=()=>{
 
-    const [allvalues,setValues] = useState({
+    const [allValues,setValues] = useState({
        
-  company: "",
-   life_at_company: { description: "", image_url: "" },
+  jobDetails: {},
+  life_at_company: {},
   skills: [],
-  similarJobs :[],
+ 
   
         
     })
 
    
      const navigate = useNavigate();
-    const {id} = useParams();
+     const {id} = useParams();
 
     
 
   
      useEffect(()=>{
 
-        const {company,life_at_company,skills,similarJobs} = allvalues;
-        
+     
+
          const jobAfterDisplay= async()=>{
 
         const api = `https://apis.ccbp.in/jobs/${id}`;
@@ -49,13 +49,17 @@ import SimilarJobs from '../similarJobs';
          const data = await response.json();
            if(response.ok){
          console.log(data.job_details);
-         console.log(data.similar_jobs)
-         console.log(allvalues);
-         setValues(data.job_details)
+          console.log(data.life_at_company);
+           console.log(data.job_details.skills);
+         
+         
+         setValues({...allValues,jobDetails:data.job_details,life_at_company:data.job_details.life_at_company,skills:data.job_details.skills});
+         
          }
        }
        catch(error){
         console.log(error);
+        
        }
 
     }
@@ -69,8 +73,8 @@ import SimilarJobs from '../similarJobs';
     },[]);
     const DisplayImg = ()=>{
      
-      if(allvalues.life_at_company.image_url){
-         return <img src={allvalues.life_at_company.image_url}></img>
+      if(allValues.life_at_company.image_url){
+         return <img src={allValues.life_at_company.image_url}></img>
       }else{
        return <p>No Image Available</p>
       }
@@ -87,24 +91,24 @@ import SimilarJobs from '../similarJobs';
            
              <li  className='w-50 p-4 border shadow  ' style={{listStyle:"none",marginBottom:"10px"}}>  
           <div style={{display:"flex",alignItems:"center"}}>
-             <img src={allvalues.company_logo_url} style={{width:"75px"}}></img>
+             <img src={allValues.jobDetails.company_logo_url} style={{width:"75px"}}></img>
            <div className='ms-4'>
-            <h1 >{allvalues.title}</h1>
+            <h1 >{allValues.jobDetails.title}</h1>
             
             <div >
            
              <span >Employment Type:</span>
-           <span style={{color:"red",marginLeft:"5px"}}>{allvalues.employment_type}</span>
+           <span style={{color:"red",marginLeft:"5px"}}>{allValues.jobDetails.employment_type}</span>
            
            
            <span className='ms-5' >Package:</span>
-           <span style={{color:"red",marginLeft:"5px"}}>{allvalues.package_per_annum}</span>
+           <span style={{color:"red",marginLeft:"5px"}}>{allValues.jobDetails.package_per_annum}</span>
 
            <span className='ms-5' >Location:</span>
-           <span  style={{color:"red",marginLeft:"5px"}}>{allvalues.location}</span>
+           <span  style={{color:"red",marginLeft:"5px"}}>{allValues.jobDetails.location}</span>
 
             <span className='ms-5' >Rating:</span>
-           <span  style={{color:"red",marginLeft:"5px"}}>{allvalues.rating}</span>
+           <span  style={{color:"red",marginLeft:"5px"}}>{allValues.jobDetails.rating}</span>
            
            </div>
            </div>
@@ -113,37 +117,32 @@ import SimilarJobs from '../similarJobs';
             <hr></hr>
             <h3>Description</h3>
             <p style={{textAlign:"justify"}}>
-                {allvalues.job_description}
+                {allValues.jobDetails.job_description}
             </p>
 
             
            
             <h3>Life At Company:</h3>
-            <p>{allvalues.life_at_company.description}</p>
+          <p>{allValues.life_at_company.description}</p> 
             <h3>skills:</h3>
-            <ul  style={{display:"flex",listStyle:"none"}}>
-                {allvalues.skills.map(each => (
-                     <li key={each.name}>
-                      
-                    <img style={{marginRight:"40px"}}  src={each.image_url}></img>
-                    
-                </li>
-                ))}
-               
-            </ul>
+           <div style={{display:"flex"}}>
+            {allValues.skills.map((each)=> (
+            <div>
+                <img src={each.image_url}></img>
+            <p>{each.name}</p>
+            </div>
+            ))}
+           </div>
           
            
          
            </div>
               <h3>Company Image:</h3>
            {DisplayImg()}<br></br>
-        { /*  <div style={{display:"flex",justifyContent:"center"}}>
-            {
-            allvalues.similarJobs.map(each => (<SimilarJobs similarJobs = {each}  key={each.id}/>))
-            }
+       
+          <div style={{display:"flex",justifyContent:"center"}}>
             <button onClick={OnSimilar} className='btn btn-primary' >Search similar jobs</button>
-           </div>
-           */}
+          </div>
         </li>
          </div>
          </div>

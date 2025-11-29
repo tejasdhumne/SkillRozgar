@@ -1,0 +1,45 @@
+.filter-container {
+    width: 90%;
+    max-width: 400px; /* prevents huge width on desktop */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  
+}
+
+.filter-container img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Make the boxes flexible */
+.filter-container ul {
+    padding: 10px;
+    box-sizing: border-box;
+    max-height: 300px; /* optional scroll if too many items */
+    overflow-y: auto;
+    
+}
+
+.filter-container h4 {
+    margin-bottom: 10px;
+}
+
+/* On very small screens (iPhone SE 375px) */
+@media (max-width: 375px) {
+    .filter-container {
+        width: 95%;
+    }
+
+    .filter-container img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .filter-container ul {
+        max-height: 250px;
+    }
+}

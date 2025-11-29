@@ -42,7 +42,7 @@ const Home =()=> {
 
                 </div>
                 <div className='right'>
-                {/*  <img  src='https://cdn9.dissolve.com/p/D538_365_007/D538_365_007_1200.jpg'></img>  */}
+                  <img  src='https://cdn9.dissolve.com/p/D538_365_007/D538_365_007_1200.jpg' style={{width:"100%"}}></img> 
 
                 </div>
 

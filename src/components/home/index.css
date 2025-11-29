@@ -10,12 +10,12 @@
 .upper{
     height: 10vh;
     width: 100%;
-    background-color: rgb(4, 255, 0);
+  
 }
 .lower{
     width: 100%;
     height: 90vh;
-    background-color:rgba(35, 206, 32, 0.705) ;
+ 
     display: flex;
    text-align: justify;
 }

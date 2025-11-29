@@ -83,7 +83,7 @@ const FilterSection =(prop)=>{
    },[])
 
    const displayProfile=()=>(
-    <div className='w-75 shadow ms-5 ' style={{height:"200px"}}>
+    <div className="profile-box shadow p-3 d-flex align-items-center ms-3" >
         <img src={allValues.profileDeatils.profile_image_url} width={"100px"}/> 
         <div>
             <h1>{allValues.profileDeatils.name}</h1>
@@ -94,11 +94,11 @@ const FilterSection =(prop)=>{
 
    const employType=()=>( 
     
-   <ul style={{listStyle:"none",height:"200px"}} className='shadow w-75 shadow ms-5  ' >
+   <ul className="filter-box shadow p-3 ms-3">
     <h4>Employeement Type:</h4>
     {
         empArr.map(each=>(
-            <li key={each.id} style={{marginBottom:"10px"}}>
+            <li key={each.id} style={{listStyle:"none"} } >
                 <input id={each.id} type="checkbox" onChange={onClick} value={each.id}/>
                 <label className='ms-3'  htmlFor={each.id}>{each.label} </label>
             </li>
@@ -108,11 +108,11 @@ const FilterSection =(prop)=>{
    )
 
    const salaryType = ()=>(
-    <ul style={{listStyle:"none",height:"200px"}} className='shadow w-75 shadow ms-5  ' >
+    <ul className="filter-box shadow p-3 ms-3" >
     <h4>Sallary Range:</h4>
     {
         slaryArr.map(each=>(
-            <li key={each.id} style={{marginBottom:"10px"}} >
+            <li key={each.id} style={{listStyle:"none"}} >
                 <input name='salary' id={each.id} type="radio" onChange={onSalaryType} value={each.id} checked={myValues.salary===each.id}/>
                 <label className='ms-3'  htmlFor={each.id}>{each.label} </label>
             </li>
@@ -140,7 +140,7 @@ const FilterSection =(prop)=>{
     }
    
    return(
-   <div className='w-100  ' >
+   <div className='className="filter-container ' >
     {
         displayProfile()
     }

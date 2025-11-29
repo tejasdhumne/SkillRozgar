@@ -12,7 +12,7 @@ import './index.css';
 
          <Link to={`/jobs/${jobdetails.id}`}>
           
-          <li  className='w-75 p-4 border shadow  ' style={{listStyle:"none",marginBottom:"10px"}}>  
+          <li  className='w-75 p-4 border shadow ms-5  ' style={{listStyle:"none",marginBottom:"10px"}}>  
           <div style={{display:"flex",alignItems:"center"}}>
              <img src={jobdetails.company_logo_url} style={{width:"75px"}}></img>
            <div className='ms-4'>
